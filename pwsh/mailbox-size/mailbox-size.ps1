@@ -16,13 +16,13 @@ Get-Mailbox | Select-Object PrimarySmtpAddress | ForEach-Object {
 
     $output += [PSCustomObject]@{
         User = $user
-        Size = "$size GB"
+        Size = $size
     }
 }
 
 $output = $output | Sort-Object Size -Descending
 
-$output
+$output | ForEach-Object {$_.Size = "$($_.Size) GB"}
 
 
 
